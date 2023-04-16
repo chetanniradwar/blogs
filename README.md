@@ -41,3 +41,6 @@ psql -U postgres` to create 'postgres' user with password 'postgres' and login t
 - `requests` - to make https requests using python
 - `json` - to convert json to python dictionary and vice versa
 - `pytest` - for writing unit test cases
+- `django-filter` for query parameters filter functionality
+- `djangorestframework-simplejwt` - for authenticating apis
+
