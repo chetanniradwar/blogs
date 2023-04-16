@@ -30,6 +30,7 @@ psql -U postgres` to create 'postgres' user with password 'postgres' and login t
 
 14. run `python manage.py runserver` to run the development server on 8000 port
 
+15. to run the test cases run `pytest blogs/tests.py`
 
 ## Postman documentation link
 - [postman doc link](https://documenter.getpostman.com/view/20803750/2s93XyThu2)
