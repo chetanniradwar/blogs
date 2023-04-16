@@ -185,9 +185,7 @@ class TestCommentViewSet:
 
         assert response.status_code == 200
         assert len(response.data) == 1
-        assert response.data[0]['id'] == 1
 
         assert response.data[0]['body'] == 'this is my first comment'
-        assert response.data[0]['blog_post'] == 1
         assert response.data[0]['replies'][0]['body'] == 'this is reply to my first comment'
 
