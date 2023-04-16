@@ -10,6 +10,7 @@ pytest = "*"
 pytest-django = "*"
 django-filter = "*"
 djangorestframework-simplejwt = "*"
+django-dynamic-fixture = "*"
 
 [dev-packages]
 
