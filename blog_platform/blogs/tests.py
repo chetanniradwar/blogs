@@ -167,3 +167,27 @@ class TestCommentViewSet:
 
         comment_obj = Comment.objects.filter(blog_post_id=blog_post.id).first()
         assert comment_obj.replies.first().body == 'this is reply to my first comment'
+
+    @pytest.mark.django_db
+    def test_get_comments_and_replies_of_a_blog_post(self, request_factory):
+        user = G(User)
+        blog_post = G(BlogPost, )
+        comment = G(Comment, blog_post=blog_post, user=user, body='this is my first comment')
+        reply = G(Comment, parent_comment=comment, blog_post=blog_post, user=user,
+                  body='this is reply to my first comment')
+
+        endpoint = f'/comment/blog_post={blog_post.id}'
+
+        request = request_factory.get(endpoint, content_type='application/json')
+
+        view = CommentViewSet.as_view({'get': 'list'})
+        response = view(request)
+
+        assert response.status_code == 200
+        assert len(response.data) == 1
+        assert response.data[0]['id'] == 1
+
+        assert response.data[0]['body'] == 'this is my first comment'
+        assert response.data[0]['blog_post'] == 1
+        assert response.data[0]['replies'][0]['body'] == 'this is reply to my first comment'
+
